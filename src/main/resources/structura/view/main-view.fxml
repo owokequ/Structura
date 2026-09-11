@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="structura.controller.MainController"
+            stylesheets="@main.css" styleClass="app-root">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="app-header">
+            <StackPane styleClass="brand-mark"><Label text="S" styleClass="brand-letter" /></StackPane>
+            <Label text="Structura" styleClass="app-title" />
+            <Label text="PROJECT STRUCTURE IDE" styleClass="app-subtitle" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="LOCAL" styleClass="badge" />
+        </HBox>
+    </top>
+    <center>
+        <HBox spacing="14" styleClass="content">
+            <VBox spacing="6" prefWidth="284" minWidth="270" styleClass="panel sidebar">
+                <VBox spacing="3">
+                    <Label text="Проект" styleClass="section-title" />
+                    <Label text="Параметры новой структуры" styleClass="muted-text" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Название" styleClass="field-label" />
+                    <TextField fx:id="projectNameField" promptText="MyProject" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Шаблон" styleClass="field-label" />
+                    <ComboBox fx:id="templateBox" maxWidth="Infinity" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Язык файлов" styleClass="field-label" />
+                    <ComboBox fx:id="languageBox" maxWidth="Infinity" />
+                    <Label text="Определяет расширение новых файлов" styleClass="hint-text" />
+                </VBox>
+                <Button text="Создать структуру" onAction="#createProject" maxWidth="Infinity"
+                        styleClass="button primary-button" />
+                <Separator />
+                <VBox spacing="6">
+                    <Label text="Существующий проект" styleClass="field-label" />
+                    <Button text="Открыть папку и показать дерево" onAction="#openExistingDirectory"
+                            maxWidth="Infinity" styleClass="button open-button" />
+                </VBox>
+                <VBox spacing="6">
+                    <Label text="Папка назначения нового проекта" styleClass="field-label" />
+                    <TextField fx:id="locationField" promptText="Не выбрана" editable="false" />
+                    <Button text="Выбрать папку…" onAction="#selectDir" maxWidth="Infinity"
+                            styleClass="button secondary-button" />
+                </VBox>
+                <Region VBox.vgrow="ALWAYS" />
+                <Label text="Имена редактируются прямо в дереве: двойной клик или F2."
+                       wrapText="true" styleClass="hint-box" />
+            </VBox>
+            <VBox spacing="11" HBox.hgrow="ALWAYS" styleClass="panel workspace-card">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <VBox spacing="2">
+                        <Label text="Структура проекта" styleClass="section-title" />
+                        <Label text="Перетаскивайте элементы в папки" styleClass="muted-text" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Папка   Alt+P" onAction="#addFolder" styleClass="button tool-button" />
+                    <Button text="Файл   Alt+F" onAction="#addFile" styleClass="button tool-button" />
+                    <Button text="Удалить   Del" onAction="#deleteSelected" styleClass="button danger-button" />
+                    <Button text="Сохранить" onAction="#saveProject" styleClass="button primary-button" />
+                </HBox>
+                <TreeView fx:id="structureTree" showRoot="true" VBox.vgrow="ALWAYS" />
+                <HBox alignment="CENTER_LEFT" spacing="8" styleClass="shortcut-bar">
+                    <Label text="F2" styleClass="keycap" /><Label text="переименовать" styleClass="shortcut-text" />
+                    <Label text="Enter" styleClass="keycap" /><Label text="сохранить имя" styleClass="shortcut-text" />
+                    <Label text="Esc" styleClass="keycap" /><Label text="отменить" styleClass="shortcut-text" />
+                </HBox>
+            </VBox>
+        </HBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER_LEFT" spacing="8" styleClass="status-bar">
+            <Label text="●" styleClass="status-dot" />
+            <Label fx:id="statusLabel" text="Готово" styleClass="status-text" />
+        </HBox>
+    </bottom>
+</BorderPane>
